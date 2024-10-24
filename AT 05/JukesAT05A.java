@@ -4,7 +4,6 @@
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.random.*;
 public class JukesAT05 {
     public static void main(String[] args) throws Exception  {
         Scanner in = new Scanner(System.in);
