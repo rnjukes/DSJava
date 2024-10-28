@@ -12,9 +12,9 @@ public class Oct25 {
         if (in.hasNextDouble()) {
 
         }
-    } while () 
-
-    }
+    
+    } while (total == 0) ;
+}
 
    // 
 
