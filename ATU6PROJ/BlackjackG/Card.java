@@ -38,47 +38,47 @@ public class Card {
         return cRank;
     }
 
-    private char getRankCh(Rank rank) {
+    private String getRankCh(Rank rank) {
         if (rank ==Rank.TWO) {
-            return '2';
+            return "2";
         } 
         if (rank ==Rank.THREE) {
-            return '3';
+            return "3";
         } 
         if (rank ==Rank.FOUR) {
-            return '4';
+            return "4";
         } 
         if (rank ==Rank.FIVE) {
-            return '5';
+            return "5";
         }  
         if (rank ==Rank.SIX) {
-            return '6';
+            return "6";
         }  
         if (rank ==Rank.SEVEN) {
-            return '7';
+            return "7";
         }  
         if (rank ==Rank.EIGHT) {
-            return '8';
+            return "8";
         } 
         if (rank ==Rank.NINE) {
-            return '9';
+            return "9";
         }  
         if (rank ==Rank.TEN) {
-            return 'T';
+            return "T";
         } 
         if (rank ==Rank.JACK) {
-            return 'J';
+            return "J";
         }  
         if (rank ==Rank.QUEEN) {
-            return 'Q';
+            return "Q";
         }  
         if (rank ==Rank.KING) {
-            return 'K';
+            return "K";
         } 
         if (rank ==Rank.ACE) {
-            return 'A';
+            return "A";
         } 
-        return '?' ;
+        return "?" ;
     }
 
      private char getSuitCh(Suit suit) {
@@ -98,7 +98,7 @@ public class Card {
     } 
 
     public String getFace() { 
-        char rankVal = getRankCh(cRank);
+        String rankVal = getRankCh(cRank);
         char suitVal = getSuitCh(cSuit);
             return ""+suitVal+rankVal;
     }
