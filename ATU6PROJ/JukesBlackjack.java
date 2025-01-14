@@ -1,13 +1,10 @@
-package BlackjackG.TGame; 
-//Ryan Jukes
-//1-10-25
-//AT Unit 6 Project 
+
 
 import BlackjackG.Card;
 import java.util.ArrayList;
 import java.util.Scanner; 
 
-public class BlackjackGame {
+public class JukesBlackjack {
 
     private static int cardValue(Card.Rank rank) {
         if (rank == Card.Rank.TWO) {
@@ -96,7 +93,7 @@ public class BlackjackGame {
         System.out.println();
         boolean pUp = true;
         boolean dUp = false;
-        String hiddencard = "🂠";
+        String hiddencard = "🂠";      
 
         ArrayList<Card> phand = new ArrayList<>();
         ArrayList<Card> dhand = new ArrayList<>();
@@ -106,7 +103,12 @@ public class BlackjackGame {
      
         System.out.printf("Dealer hand: \n"+dhand.get(0).getFace()+" "+hiddencard+"\n\n");
         System.out.printf("Player hand: \n"+phand.get(0).getFace()+" "+phand.get(1).getFace()+"\n");
+        
+        int z = 0;
+        Card az = dhand.get(0);        
+        z += cardValue(az.getRank()); 
 
+        if (z == 10 || z == 11) {
         if (handValue(dhand) == 21) {
                 System.out.println("The dealer checked their hiddden card and has blackjack");
                 pUp = false;
@@ -114,12 +116,18 @@ public class BlackjackGame {
             } else {
                 System.out.println("The dealer checked their hidden card and does not have blackjack");
             }
+        }
 
         while (pUp) {
             int pScore = handValue(phand);
             if (pScore > 21) {
                 System.out.println("Unlucky! You busted!");
                 pUp = false;
+                break;
+            } else if (pScore == 21) {
+                System.out.println("You have blackjack!");
+                pUp = false;
+                dUp = false;
                 break;
             }
 
@@ -164,8 +172,7 @@ public class BlackjackGame {
                 }
                 System.out.println();
         System.out.println("The dealer had "+handValue(dhand));
-
-
+        
         if (!dUp) {
             int endpscore = handValue(phand);
             int enddscore = handValue(dhand);
