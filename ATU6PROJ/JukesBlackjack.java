@@ -61,7 +61,7 @@ public class JukesBlackjack {
             aces++;
         }
     }
-    while (trueValue > 21 && aces >0) {
+    while (trueValue > 21 && aces > 0) {
         trueValue -= 10;
         aces--;
     }
