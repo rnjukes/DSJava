@@ -1,4 +1,6 @@
-
+//Ryan Jukes
+//1-13-24
+//AT Java Blackjack Project 
 
 import BlackjackG.Card;
 import java.util.ArrayList;
