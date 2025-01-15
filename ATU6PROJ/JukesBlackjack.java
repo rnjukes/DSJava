@@ -129,7 +129,7 @@ public class JukesBlackjack {
             } else if (pScore == 21) {
                 System.out.println("You have blackjack!");
                 pUp = false;
-                dUp = false;
+                dUp = true;
                 break;
             }
 
