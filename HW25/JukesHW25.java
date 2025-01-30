@@ -8,7 +8,6 @@ public class JukesHW25 {
 
     private double cSpeed = 0;
 
-    
     public void acc() {
         if (cSpeed<120) {
             cSpeed = cSpeed +1;
