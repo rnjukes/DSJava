@@ -69,13 +69,21 @@ public class Mower {
             nCol--; 
         }
         
-        if (nRow <= 0 || nRow >= ryard.returnH()) {
+        if (ryard.returnGen(nRow, nCol) == 'R') {
             return false;
-        } else if (nCol <= 0 || nCol >= ryard.returnW()) {
-            return false;
-        } else {
-            return true;
         }
+        return true;
+    }
+
+    public boolean FFpt2(Yard ryard) {
+        for (int i = 1; i < ryard.returnH(); i++) {
+            for (int j = 1; j < ryard.returnW(); j++) {
+                if (ryard.returnGen(i, j) == '+') {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
         
     public void goForward (Yard ryard) {
@@ -88,6 +96,42 @@ public class Mower {
             row++; 
         } else if (direct == 3) {
             col--; 
+        } else {
+            turnR();
+        }
+    }
+}
+
+public static void clearScreen() {
+     System.out.print("\033[H\033[2J");
+     System.out.flush();
+    }
+
+    public static void delay(long mseconds) {
+       try {
+           Thread.sleep(mseconds);
+       } catch (InterruptedException e) {
+           System.err.println("InterruptedException received!");
+       }
+   }
+
+public void mowLawn(Yard ryard) {
+    boolean ynmow = true;
+    boolean zigzag = true;
+    while (ynmow) {
+        clearScreen();
+        changeSymbol(ryard); 
+        ryard.spawnYard(this);
+        delay(500);
+        if (forwardFramework(ryard)) {
+            goForward(ryard);  
+        } else { 
+            turnL();
+            if (forwardFramework(ryard)) {
+                goForward(ryard);
+                turnL();
+                zigzag= !zigzag;
+            }
         }
     }
 }
