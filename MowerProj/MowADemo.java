@@ -20,7 +20,7 @@ public class MowADemo {
         clearScreen();
 
         Yard yardA = new Yard(inpHeight,inpWidth); 
-        yardA.spawnYard();
+       // yardA.spawnYard();
         System.out.println();
         System.out.println("Height: "+yardA.returnH());
         System.out.println("Width:  "+yardA.returnW());

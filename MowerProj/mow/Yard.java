@@ -8,11 +8,11 @@ public class Yard {
     private int yardHeight;
     private char[][] ryard;
 
-    public int returnH() {
+    public int returnW() {
         return (yardWidth - 2);
     }
 
-    public int returnW() {
+    public int returnH() {
         return (yardHeight - 2);
     }
 
@@ -45,12 +45,27 @@ public class Yard {
                 ryard[i][a] = '+';
             } } }
 
-    public void spawnYard() {
-        for (int c = 0; c < yardWidth; c++) {
-            for (int d = 0; d < yardHeight; d++) {
-                System.out.print(ryard[c][d]);
-            }
+    public void spawnYard(Mower mower) {
+        for (int d = 0; d < yardWidth; d++) {
+            for (int e = 0; e < yardHeight; e++) {
+                if (d == mower.returnRow() && e == mower.returnCol()) {
+                    char actualMower = '>';
+                    if (mower.returnDirect() == 0) {
+                        actualMower = '^';
+                    } else if (mower.returnDirect() == 1) {
+                        actualMower = '>';
+                    } else if (mower.returnDirect() == 2) {
+                        actualMower = 'v';
+                    } else if (mower.returnDirect() == 3) {
+                        actualMower = '<';
+                    }
+                    System.out.print(actualMower);
+                } else {
+                    System.out.print(ryard[d][e]);
+                }
+            } 
             System.out.println();
-        } 
-       
-    } }
+        }
+    }
+
+}
