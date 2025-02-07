@@ -38,11 +38,11 @@ public class Mower {
         this.direct = direct;
     }
 
-    public void turnR() {
+    public void turnL() {
         this.direct = ((direct + 3)%4);
     }
 
-    public void turnL() {
+    public void turnR() {
         this.direct = ((direct + 1)%4);
     }
 
@@ -56,7 +56,7 @@ public class Mower {
         }
     }
 
-    public boolean forwardFramework(Yard ryard) {
+    public boolean checkNext(Yard ryard) {
         int nRow = row;
         int nCol = col;
         if (direct == 0) {
@@ -74,20 +74,22 @@ public class Mower {
         }
         return true;
     }
-
-    public boolean FFpt2(Yard ryard) {
-        for (int i = 1; i < ryard.returnH(); i++) {
-            for (int j = 1; j < ryard.returnW(); j++) {
-                if (ryard.returnGen(i, j) == '+') {
+        
+   /* 
+   public boolean lawnExists(Yard ryard) {
+        for (int x = 1; x < ryard.returnH()- 1; x++) {
+            for (int y = 1; y < ryard.returnW() - 1; y++) {
+                if (ryard.returnGen(x, y) == '+') {
                     return true;
-                }
+                } 
             }
         }
         return false;
     }
-        
+   */
+
     public void goForward (Yard ryard) {
-        if (forwardFramework(ryard)) {
+        if (checkNext(ryard)) {
         if (direct == 0) {
             row--;
         } else if (direct == 1) {
@@ -116,21 +118,25 @@ public static void clearScreen() {
    }
 
 public void mowLawn(Yard ryard) {
-    boolean ynmow = true;
-    boolean zigzag = true;
-    while (ynmow) {
+    int zigzag = 1;
+    while (true) {
         clearScreen();
         changeSymbol(ryard); 
         ryard.spawnYard(this);
         delay(500);
-        if (forwardFramework(ryard)) {
+        if (checkNext(ryard)) {
             goForward(ryard);  
         } else { 
-            turnL();
-            if (forwardFramework(ryard)) {
+            if (zigzag % 2 != 0) {
+                turnR();
+                goForward(ryard);
+                turnR();
+                zigzag++; 
+            } else {
+                turnL();
                 goForward(ryard);
                 turnL();
-                zigzag= !zigzag;
+                zigzag++;
             }
         }
     }
