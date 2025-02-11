@@ -13,13 +13,21 @@ public class MowBDemo {
     Scanner in = new Scanner(System.in);
     System.out.print("Desired lawn height: ");
     int inpHeight = in.nextInt();
-    System.out.print("Desired lawn width: ");
+    System.out.print("Desired lawn width:  ");
     int inpWidth = in.nextInt();
     Mower.clearScreen();
 
     Yard yardD = new Yard(inpHeight, inpWidth);
     Mower mower = new Mower(1, 1);
+    double inpHeight2;
 
-    mower.mowLawn(yardD);
+    if (inpHeight%2 == 0) {
+    inpHeight2 = inpHeight/2;
+  } else { 
+    inpHeight2 = (inpHeight/2)+1; 
   }
+  for (int i = 0; i < inpHeight2; i++) {
+    mower.mowLawn(yardD); 
+  }
+}
 }
