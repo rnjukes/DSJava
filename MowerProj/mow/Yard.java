@@ -6,43 +6,47 @@ package MowerProj.mow;
 public class Yard {
     private int yardWidth; 
     private int yardHeight;
-    private char[][] ryard;
+    private char[][] lawn;
 
     public int returnW() {
-        return (yardWidth - 2);
+        return ((yardWidth - 2));
     }
 
     public int returnH() {
         return (yardHeight - 2);
     }
 
-    public char returnGen(int x, int y) {
-        return ryard[x][y];
+    public char returnGen(int row, int col) {
+    if (row < 0 || row >= lawn.length || col < 0 || col >= lawn[0].length) {
+        return 'X'; 
+    }
+    return lawn[row][col];
     }
 
-    public void altSpace(int x, int y, char inputValue) {
-        ryard [x][y] = inputValue;
+    public void altSpace(int row, int col, char inputValue) {
+              lawn [row][col] = inputValue;
+
     }
 
-    public Yard (int x, int y) {
+      public Yard (int x, int y) {
         x = x + 2;
         y = y + 2;
         yardWidth = x;
         yardHeight = y;
 
-        ryard = new char [yardWidth][yardHeight];
+        lawn = new char [yardWidth][yardHeight];
 
         for (int i = 0; i < yardWidth; i++) {
-            ryard[i][0] = 'R';
-            ryard[i][yardHeight-1] = 'R';
+            lawn[i][0] = 'R';
+            lawn[i][yardHeight-1] = 'R';
         }
         for (int i = 0; i < yardHeight; i++) {
-            ryard[0][i] = 'R';
-            ryard[yardWidth-1][i] = 'R';
+            lawn[0][i] = 'R';
+            lawn[yardWidth-1][i] = 'R';
         }
         for (int i = 1; i < yardWidth-1; i++) { 
             for (int a = 1; a < yardHeight-1; a++) {
-                ryard[i][a] = '+';
+                lawn[i][a] = '+';
             } } }
 
     public void spawnYard(Mower mower) {
@@ -61,11 +65,27 @@ public class Yard {
                     }
                     System.out.print(actualMower);
                 } else {
-                    System.out.print(ryard[d][e]);
+                    System.out.print(lawn[d][e]);
                 }
             } 
             System.out.println();
         }
     }
+
+     public void spawnYard2(Mower mower){
+        int mowerRow = mower.returnRow();
+        int mowerCol = mower.returnCol();
+        int mowerDir = mower.returnDirect(); 
+        for (int i = 0; i < lawn.length; i++) {
+            for (int j = 0; j < lawn[i].length; j++) {
+                if (i == mowerRow && j == mowerCol) {
+                    System.out.print(mower.getDirectionSymbol()); 
+                } else {
+                    System.out.print(lawn[i][j]); 
+                }
+            }
+            System.out.println();
+        }
+    }     
 
 }

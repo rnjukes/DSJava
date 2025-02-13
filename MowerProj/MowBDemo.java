@@ -6,6 +6,7 @@ package MowerProj;
 import java.util.Scanner;
 import MowerProj.mow.Yard; 
 import MowerProj.mow.Mower; 
+import java.util.Random;
 
 public class MowBDemo {
 
@@ -16,18 +17,12 @@ public class MowBDemo {
     System.out.print("Desired lawn width:  ");
     int inpWidth = in.nextInt();
     Mower.clearScreen();
-
+  
     Yard yardD = new Yard(inpHeight, inpWidth);
-    Mower mower = new Mower(1, 1);
-    double inpHeight2;
+    Mower mower = new Mower(1,1,0);
 
-    if (inpHeight%2 == 0) {
-    inpHeight2 = inpHeight/2;
-  } else { 
-    inpHeight2 = (inpHeight/2)+1; 
-  }
-  for (int i = 0; i < inpHeight2; i++) {
-    mower.mowLawn(yardD); 
+  for (int i = 0; i < inpHeight; i++) {
+  mower.mowLawn(yardD); 
   }
 }
 }
