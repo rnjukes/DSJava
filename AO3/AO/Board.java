@@ -64,11 +64,11 @@ public class Board extends JPanel {
         sitarMusic = new sc("AO3/Files/sitar.wav");
         sitarMusic.open();
         sitarMusic.setLoop(true);
-        sitarMusic.isLoop();
         sitarMusic.play();
         
         owSound = new sc("AO3/Files/ow.wav");
         owSound.open();
+        owSound.setLoop(false);
         
         Random rand = new Random();
         x = WIDTH / 2 - IMAGE_SIZE / 2;

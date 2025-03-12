@@ -15,6 +15,7 @@ public class sc {
     private AudioInputStream audioIn;
     private Clip clip;
     private boolean loop;
+
     public sc(String path) {
        filePath = path;
        clip = null;
@@ -27,7 +28,7 @@ public class sc {
     public void setLoop(boolean loop) {
         this.loop = loop;
     }
-    
+
    public void open() {
        try {
            audioFile = new File(filePath);
@@ -62,9 +63,12 @@ public class sc {
                }
            }
            clip.setFramePosition(0);
+           if (loop) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+           } else {
            clip.start();
-       }
-
+       } 
+    }
    }
 
    public void play(boolean wait) {
