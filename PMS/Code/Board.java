@@ -1,5 +1,10 @@
 package PMS.Code;
 
+/*  Ryan Jukes
+    AT Java
+    4-8-25    
+*/
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -10,6 +15,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.awt.Graphics2D;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Board extends JPanel implements KeyListener {
      public static void main(String[] args) {
@@ -19,16 +27,30 @@ public class Board extends JPanel implements KeyListener {
         });
     }
 
+    private Ball Ball;
+    private Timer timer;    
     Cannon cannon = new Cannon();
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
     final int GROUND = HEIGHT - 25;
 
     public Board() {
-        setBackground(Color.CYAN);
+       setBackground(Color.CYAN);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setFocusable(true);
         this.addKeyListener(this);
+
+        Ball = new Ball(GROUND);  
+        cannon.setBall(Ball);  
+                
+        timer = new Timer(20, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            Ball.updateBall();
+            repaint();
+    }
+}  
+);
+        timer.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -38,7 +60,15 @@ public class Board extends JPanel implements KeyListener {
         graphics.setColor(Color.GREEN);
         graphics.fillRect(0, GROUND, WIDTH, HEIGHT);
         cannon.spawnCannon(graphics);
+        info(graphics);
+        Ball.draw(graphics);
     }
+
+    private void info(Graphics2D graphics) {
+    graphics.setColor(Color.BLACK);
+    graphics.drawString("Use ← or → to angle cannon     -     SPACE to fire", 20, 20);
+    graphics.drawString("Angle: " + (int)cannon.getAngle()*(-1) + "°", 20, 40);
+}
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 32) {
