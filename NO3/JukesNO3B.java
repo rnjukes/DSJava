@@ -16,6 +16,7 @@ public class JukesNO3B {
     public static void main(String[] args) {
        Scanner in = new Scanner(System.in);
         ArrayList<Employee> employees = new ArrayList<Employee>();
+        double salary = 0;
         Employee.lastIDUsed = 0;
         while (true) {
             System.out.print("Enter e to add employee or q to quit: ");
@@ -30,9 +31,8 @@ public class JukesNO3B {
                 System.out.print("Enter last name: ");
                 String lastname = in.nextLine();
                 System.out.print("Enter salary: ");
-                double salary = 0;
+                String token = in.nextLine();
                 try {
-                    String token = in.nextLine();
                     salary = Double.parseDouble(token);
                 } catch (InputMismatchException e) {
                     System.err.println("  Error parsing salary.");
